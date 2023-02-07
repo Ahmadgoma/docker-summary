@@ -108,6 +108,20 @@ Docker Commands
 - Fetch the logs of a container:
   - `docker logs <container_name>`
 
+- Display a live stream of container(s) resource usage statistics
+  - `docker stats <container_name> (or <container_id>)`
+  - `docker stats` ** all containers**
+
+- Display system-wide information meemory, cpu, version, images, containers count
+  - `docker info`
+
+- Run Container with full example
+  `docker run -d -p 80:80 --name n1 ngnix`
+
+- Interact with container
+  - `docker exec -it <container_name> (or <container_id>) command`
+  - `docker exec -it n1 bash`
+
 - Docker-compose
   - `docker-compose start`
   - `docker-compose stop`
