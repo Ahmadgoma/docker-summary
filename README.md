@@ -2,6 +2,7 @@
 
 ## Content:
   - [Docker](#docker)
+  - [Advantage Of Docker](#advantage_of_docker)
   - [Container](#container)
   - [Image](#image)
   - [Registry](#registry)
@@ -9,12 +10,29 @@
   - [Docker Daemon](#daemon)
   - [Docker Architecture](#architecture)
   - [Docker Commands](#commands)
+  - [Dockerfile](#dockerfile)
+  - [Docker Compose](#dockercompose)
+  - [Docker Swarm](#dockerswarm)
+  - [Kubarnetes](#k8s)
+  - [Docker Commit](#dockerswarm)
 
 **<a name="docker">
 Docker
 </a>**
 - Is a free software, allows users to create isolated environments to launch and deploy its applications.
 - These are called containers.
+- Is a container management service.
+
+**<a name="docker">
+Advantage Of Docker Docker
+</a>**
+-  Lightweight.
+-  Simple & Fast deployment.
+-  Portability.
+-  Start up in milliseconds.
+-  Performance.
+-  Multiple containers.
+-  Keep your workspace clean.
 
 **<a name="container">
 Container
@@ -58,6 +76,11 @@ Docker Architecture
 Docker Commands
 </a>**
 
+- Docker version
+  
+  - `docker --version`
+  - `docker -v`
+
 - List all containers
   
   - `docker container ls`  **List currently running containers**
@@ -79,6 +102,10 @@ Docker Commands
 
 - Create and run a container from an image, with a custom name
   - `docker run --name <container_name> <image_name>`
+  
+   - If the image doesn't exist on your local machine, the docker daemon get it from the 
+     docker hub (registry).
+   - If you don't specify the tag of the image, it pulled the latest version.
   
 - Run a container in the background
   - `docker run -d <image_name>`  
@@ -112,17 +139,49 @@ Docker Commands
   - `docker stats <container_name> (or <container_id>)`
   - `docker stats` ** all containers**
 
-- Display system-wide information meemory, cpu, version, images, containers count
+- Display system-wide information memory, cpu, version, images, containers count
   - `docker info`
 
 - Run Container with full example
-  `docker run -d -p 80:80 --name n1 ngnix`
+  `docker run -d -p 80:80 --name n1 --network=networkName -v=pathLocal:/pathContainer ngnix`
 
 - Interact with container
   - `docker exec -it <container_name> (or <container_id>) command`
   - `docker exec -it n1 bash`
 
-- Docker-compose
+
+**<a name="dockerfile">
+DockerFile
+</a>**
+
+- Is text document can build images automatically by reading the instructions from a Dockerfile.
+
+  ![DockerFile](Dokcerfile.png)
+
+### Docker Instructions: 
+  - A Dockerfile must begin with a FROM instruction.
+  - add comment with `#`.
+  - CMD ["command", "argument"].
+  - ENTRYPOINT ["command", "argument"].
+  - To build image with the Dockerfile, which it on the same path:
+    - `docker build .`
+    - `docker build --tag tagName .`
+
+
+**<a name="dockercompose">
+Docker Compose
+</a>**
+
+- Tool for running multiple containers with `docker-compose.yml` file on the **same host**.
+
+- Is very useful to build your env as a one package.
+  
+  `docker-composer -v`
+
+  - we consider the service as a container.
+  - we use `docker-compose.yml` or `docker-compose.yaml` to build the env.
+
+- Docker-compose Commands:
   - `docker-compose start`
   - `docker-compose stop`
   - `docker-compose pause`
@@ -130,3 +189,22 @@ Docker Commands
   - `docker-compose ps`
   - `docker-compose up`
   - `docker-compose down`
+
+
+**<a name="dockerswarm">
+Docker Swarm
+</a>**
+  - Container orchestration tool allows you to run & connect containers on multiple hosts.
+    
+**<a name="k8s">
+Kubarnates
+</a>**
+- Container orchestration tool like docker swarm, but it is more popular and work with large scale.
+
+
+**<a name="dockercommit">
+Docker Commit
+</a>**
+- Convert running container to an image.
+
+  `docker commit <container-name> new-name-img:v1`
